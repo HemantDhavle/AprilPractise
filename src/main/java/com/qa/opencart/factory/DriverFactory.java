@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Properties;
 
@@ -61,6 +62,17 @@ public class DriverFactory
 		
 		getDriver().manage().deleteAllCookies();
 		getDriver().manage().window().fullscreen();
+		/**
+		 * call the URL
+		 */
+		URL url;
+		try {
+			url = new URL(prop.getProperty("url"));
+			openURL(url);
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return getDriver();
 	}
 	
